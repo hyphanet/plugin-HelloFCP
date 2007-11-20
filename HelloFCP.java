@@ -34,7 +34,7 @@ public class HelloFCP implements FredPlugin, FredPluginThreadless, FredPluginFCP
 	 */
 	public void handle(FCPPluginOutputWrapper replysender, SimpleFieldSet params, Bucket data, boolean fullacess) {
 		// simple echo
-		replysender.send(params);
+		replysender.send(params, data);
 	}
 
 }
