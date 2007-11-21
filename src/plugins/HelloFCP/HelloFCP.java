@@ -3,10 +3,10 @@
  * http://www.gnu.org/ for further details of the GPL. */
 package plugins.HelloFCP;
 
-import freenet.pluginmanager.FCPPluginOutputWrapper;
 import freenet.pluginmanager.FredPlugin;
 import freenet.pluginmanager.FredPluginFCP;
 import freenet.pluginmanager.FredPluginThreadless;
+import freenet.pluginmanager.PluginReplySender;
 import freenet.pluginmanager.PluginRespirator;
 import freenet.support.SimpleFieldSet;
 import freenet.support.api.Bucket;
@@ -22,17 +22,17 @@ public class HelloFCP implements FredPlugin, FredPluginThreadless, FredPluginFCP
 	}
 
 	public void terminate() {
-		
+	
 	}
 	
 	/**
-	 * 
-	 * the fullaccess flag is set true if the client comes from an adress with full fcp access,
-	 * otherwise false
+	 * if the access flag is null it is a direct call from an other plugin
+	 * the access flag is set true if the client comes from an adress with full fcp access,
+	 * otherwise it is set false
 	 * 
 	 * @see freenet.pluginmanager.FredPluginFCP#create(java.lang.String, freenet.support.SimpleFieldSet, boolean)
 	 */
-	public void handle(FCPPluginOutputWrapper replysender, SimpleFieldSet params, Bucket data, boolean fullacess) {
+	public void handle(PluginReplySender replysender, SimpleFieldSet params, Bucket data, Boolean access) {
 		// simple echo
 		replysender.send(params, data);
 	}
