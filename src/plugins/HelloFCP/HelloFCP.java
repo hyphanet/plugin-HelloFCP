@@ -26,13 +26,12 @@ public class HelloFCP implements FredPlugin, FredPluginThreadless, FredPluginFCP
 	}
 	
 	/**
-	 * if the access flag is null it is a direct call from an other plugin
-	 * the access flag is set true if the client comes from an adress with full fcp access,
-	 * otherwise it is set false
+	 * access flag: FredPluginFCP.ACCESS_DIRECT:         direct call (plugin to plugin);
+	 *              FredPluginFCP.ACCESS_FCP_RESTRICTED: FCP restricted access;
+	 *              FredPluginFCP.ACCESS_FCP_FULL :      FCP full access  
 	 * 
-	 * @see freenet.pluginmanager.FredPluginFCP#create(java.lang.String, freenet.support.SimpleFieldSet, boolean)
 	 */
-	public void handle(PluginReplySender replysender, SimpleFieldSet params, Bucket data, Boolean access) {
+	public void handle(PluginReplySender replysender, SimpleFieldSet params, Bucket data, int accesstype) {
 		// simple echo
 		replysender.send(params, data);
 	}
