@@ -6,6 +6,7 @@ package plugins.HelloFCP;
 import freenet.pluginmanager.FredPlugin;
 import freenet.pluginmanager.FredPluginFCP;
 import freenet.pluginmanager.FredPluginThreadless;
+import freenet.pluginmanager.PluginNotFoundException;
 import freenet.pluginmanager.PluginReplySender;
 import freenet.pluginmanager.PluginRespirator;
 import freenet.support.SimpleFieldSet;
@@ -33,7 +34,12 @@ public class HelloFCP implements FredPlugin, FredPluginThreadless, FredPluginFCP
 	 */
 	public void handle(PluginReplySender replysender, SimpleFieldSet params, Bucket data, int accesstype) {
 		// simple echo
-		replysender.send(params, data);
+		try {
+			replysender.send(params, data);
+		} catch (PluginNotFoundException e) {
+			System.out.println("Connection to request sender lost.");
+			e.printStackTrace();
+		}
 	}
 
 }
